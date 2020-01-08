@@ -1,0 +1,22 @@
+<ion-split-pane>
+  <ion-menu contentId='content'>
+    <app-header title='Menu'></app-header>
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle auto-hide='false' *ngFor='let page of pages'>
+          <ion-item [routerLink]='page.url' routeDirection='root'
+            [class.active-item]='selectedPath.startsWith(page.url)'>
+            <ion-label>{{page.tittle}}</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+
+      <ion-item tappable (click)='logout()'>
+        <ion-icon name='log-out' slot='start'></ion-icon>
+        Logout
+      </ion-item>
+    </ion-content>
+
+  </ion-menu>
+  <ion-router-outlet id='content' main></ion-router-outlet>
+</ion-split-pane>
