@@ -6,11 +6,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { IonicStorageModule } from '@ionic/storage';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
   declarations: [HeaderComponent],
-  imports: [CommonModule, IonicModule, FormsModule, IonicStorageModule.forRoot()],
-  exports: [CommonModule, IonicModule, FormsModule, HeaderComponent],
+  imports: [CommonModule, IonicModule, FormsModule, CoreModule, IonicStorageModule.forRoot()],
+  exports: [CommonModule, IonicModule, FormsModule, CoreModule, HeaderComponent],
   providers: [LoaderService, AuthService]
 })
 export class SharedModule {}

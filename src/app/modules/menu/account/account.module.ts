@@ -1,16 +1,15 @@
 import { SharedModule } from './../../../shared/shared.module';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
-import { IonicModule } from '@ionic/angular';
-
 import { AccountPageRoutingModule } from './account-routing.module';
 
 import { AccountPage } from './account.page';
+import { ConnectCardComponent } from './connect-card/connect-card.component';
+import { CardService } from '../../../data/services/card.service';
 
 @NgModule({
   imports: [SharedModule, AccountPageRoutingModule],
-  declarations: [AccountPage]
+  exports: [ConnectCardComponent],
+  declarations: [AccountPage, ConnectCardComponent],
+  providers: [CardService]
 })
 export class AccountPageModule {}

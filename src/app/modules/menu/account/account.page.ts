@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { CardService } from '../../../data/services/card.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-account',
@@ -7,12 +9,16 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./account.page.scss']
 })
 export class AccountPage {
-  constructor(public modalController: ModalController) {}
+  public cardConnected: Observable<boolean>;
 
-  async connect() {
-    // const modal = await this.modalController.create({
-    //   component: ModalPage
-    // });
-    // return await modal.present();
+  constructor(public modalController: ModalController, private cardService: CardService) {
+    this.cardConnected = this.cardService.getCardConnection();
+    this.cardService.verifyCard();
+  }
+
+  connect(form) {
+    this.cardService.connect(form.value).subscribe(res => {
+
+    });
   }
 }
