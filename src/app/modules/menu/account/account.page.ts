@@ -17,8 +17,6 @@ export class AccountPage {
   }
 
   connect(form) {
-    this.cardService.connect(form.value).subscribe(res => {
-
-    });
+    this.cardService.connect(form.value);
   }
 }

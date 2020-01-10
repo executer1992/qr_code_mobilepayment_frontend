@@ -1,5 +1,5 @@
 import { Observable, throwError } from 'rxjs';
-import { catchError} from 'rxjs/operators';
+import { catchError, finalize, switchMap, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import {
   HttpEvent,
@@ -8,27 +8,29 @@ import {
   HttpRequest,
   HttpErrorResponse,
 } from '@angular/common/http';
+import { Storage } from '@ionic/storage';
+import { AuthService } from '../shared/auth.service';
+import { fromPromise } from 'rxjs/internal-compatibility';
 
 
 @Injectable()
 export class HeaderInterceptor implements HttpInterceptor {
 
-  constructor() { }
+  constructor(private storage: Storage, private authService: AuthService) { }
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (!request.headers.has('Content-Type')) {
-      request = request.clone({ headers: request.headers.set('Content-Type', 'application/json') });
-    }
+    return fromPromise(this.storage.get('ACCESS_TOKEN')).pipe(
+      switchMap(token => {
+        if (token) {
+          request = request.clone({ headers: request.headers.set('Authorization', `Bearer ${token}`) });
+        }
+        request = request.clone({ headers: request.headers.set('Accept', 'application/json') });
+        request = request.clone({ headers: request.headers.set('Content-Type', 'application/json') });
+        return next.handle(request);
+      })
+      )
 
-    request = request.clone({ headers: request.headers.set('Accept', 'application/json') });
-
-    return next.handle(request).pipe(
-    catchError((err: any) => {
-      if (err instanceof HttpErrorResponse) {
-        console.error(err);
-      }
-      return throwError(err);
-    })
-    );
   }
+
+    // request = request.clone({ headers: request.headers.set('Accept', 'application/json') });
 
 }
