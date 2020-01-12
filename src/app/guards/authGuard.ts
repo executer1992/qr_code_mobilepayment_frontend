@@ -8,28 +8,28 @@ import { delay, first, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  private isloggedIn: boolean = false;
+  private isloggedIn: Observable<boolean>;
 
   constructor(private authService: AuthService, private router: Router) {
-    this.authService.getAuthentication().subscribe( (isLogged: boolean) => {
-      this.isloggedIn = isLogged;
-      if (this.isloggedIn) {
-        this.router.navigate(['/']);
-      } else {
-        this.router.navigate(['logout']);
-      }
-    })
+    this.isloggedIn = this.authService.getAuthentication();
   }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if (!this.isloggedIn) {
-      return this.router.navigate(['login']);
-    }
+    this.isloggedIn
+      .pipe(
+        first(),
+        tap(logged => {
+          if (!logged) {
+            this.router.navigate(['login']);
+          }
+        })
+      )
+      .subscribe();
 
     return this.isloggedIn;
   }
 
-  public getGuardAuthentication(): boolean {
+  public getGuardAuthentication(): Observable<boolean> {
     return this.isloggedIn;
   }
 }

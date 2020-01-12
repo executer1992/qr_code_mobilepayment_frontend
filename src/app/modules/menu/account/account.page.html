@@ -1,16 +1,15 @@
-<app-header title='My account'></app-header>
-<ion-content *ngIf="cardConnected | async as cardConnected">
-    <ng-container *ngIf="!cardConnected">
-        <app-connect-card
-        (connect)="connect($event)"
-        >
+<app-header title="My account"></app-header>
 
-        </app-connect-card>
-    </ng-container>
-    <ion-card  *ngIf="cardConnected">
-        <ion-card-header>Your balance</ion-card-header>
-        <ion-card-content>
-            {{2323}}
-        </ion-card-content>
-    </ion-card>
+<ion-content>
+  <ion-card *ngIf="cardConnected; else connect">
+    <ion-card-header>Your balance</ion-card-header>
+    <ion-card-content>
+      {{2323}}
+    </ion-card-content>
+  </ion-card>
+
+  <ng-template #connect>
+    {{cardConnected}}
+    <app-connect-card (connect)="connectt($event)"> </app-connect-card>
+  </ng-template>
 </ion-content>
