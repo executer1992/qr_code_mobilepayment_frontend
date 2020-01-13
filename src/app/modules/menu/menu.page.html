@@ -6,14 +6,15 @@
         <ion-menu-toggle auto-hide='false' *ngFor='let page of pages'>
           <ion-item [routerLink]='page.url' routeDirection='root'
             [class.active-item]='selectedPath.startsWith(page.url)'>
-            <ion-label>{{page.tittle}}</ion-label>
+            <ion-icon name={{page.icon}} slot='start'></ion-icon>
+            <ion-label translate>{{page.tittle}}</ion-label>
           </ion-item>
         </ion-menu-toggle>
       </ion-list>
 
       <ion-item tappable (click)='logout()'>
         <ion-icon name='log-out' slot='start'></ion-icon>
-        Logout
+        {{'myApp.logout' | translate}}
       </ion-item>
     </ion-content>
 

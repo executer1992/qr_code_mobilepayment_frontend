@@ -1,9 +1,9 @@
-import { TransactionHistoryService } from './../../../data/services/transaction-history.service';
+import { TransactionService } from '../../../data/services/transaction.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { CardService } from '../../../data/services/card.service';
 import { Observable, Subscription } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { switchMap, take, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-account',
@@ -16,21 +16,15 @@ export class AccountPage implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.cardService.verifyCard();
-    this.subscription.add(this.cardService.cardConnected$.subscribe(connected => (this.cardConnected = connected)));
-    this.transactionService.getTransactionHistory();
+    this.subscription.add(this.cardService.cardConnected$.pipe(tap(connected => (this.cardConnected = connected))).subscribe());
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-  constructor(
-    public modalController: ModalController,
-    private cardService: CardService,
-    private transactionService: TransactionHistoryService
-  ) {}
+  constructor(private cardService: CardService) {}
 
   connectt(creditCard) {
-    console.log(creditCard);
     this.cardService.connect(creditCard);
   }
 }

@@ -1,15 +1,28 @@
 <app-header title="My account"></app-header>
 
 <ion-content>
-  <ion-card *ngIf="cardConnected; else connect">
-    <ion-card-header>Your balance</ion-card-header>
-    <ion-card-content>
-      {{2323}}
-    </ion-card-content>
-  </ion-card>
+  <ion-tabs *ngIf="cardConnected; else connect">
+    <ion-tab-bar slot="bottom">
+
+      <ion-tab-button tab="balance">
+        <ion-icon name="wallet"></ion-icon>
+        <ion-label translate>myApp.balance</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="payment-done">
+        <ion-icon name="card"></ion-icon>
+        <ion-label translate>myApp.paymentDone</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="payment-received">
+        <ion-icon name="cash"></ion-icon>
+        <ion-label translate>myApp.paymentReceived</ion-label>
+      </ion-tab-button>
+
+    </ion-tab-bar>
+  </ion-tabs>
 
   <ng-template #connect>
-    {{cardConnected}}
     <app-connect-card (connect)="connectt($event)"> </app-connect-card>
   </ng-template>
 </ion-content>

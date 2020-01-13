@@ -1,15 +1,15 @@
 <ion-content class="ion-padding">
   <ion-card>
-    <ion-card-header>Scan the Qr code to process</ion-card-header>
-    <ion-button expand="full" icon-left (click)="scanCode()">
-      <ion-icon name="qr-scanner"></ion-icon>Scan code
+    <ion-card-header translate>myApp.scanProcess</ion-card-header>
+    <ion-button expand="full" icon-left (click)="scanCode()" translate>
+      <ion-icon name="qr-scanner"></ion-icon>myApp.scanCode
     </ion-button>
   </ion-card>
 
 
   <ion-card *ngIf="scannedCode">
     <ion-card-content>
-      Result from Scan: {{scannedCode}}
+      {{'scanResult' " translate}}: {{scannedCode}}
     </ion-card-content>
   </ion-card>
 

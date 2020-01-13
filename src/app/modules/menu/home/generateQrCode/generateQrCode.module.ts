@@ -1,16 +1,13 @@
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
-import { IonicModule } from '@ionic/angular';
-
 import { GenerateQrCodePageRoutingModule } from './generateQrCode-routing.module';
 
 import { GenerateQrCodePage } from './generateQrCode.page';
+import { SharedModule } from '../../../../shared/shared.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, IonicModule, GenerateQrCodePageRoutingModule, NgxQRCodeModule],
+  imports: [SharedModule, GenerateQrCodePageRoutingModule, NgxQRCodeModule, TranslateModule],
   declarations: [GenerateQrCodePage]
 })
 export class GenerateQrCodePageModule {}

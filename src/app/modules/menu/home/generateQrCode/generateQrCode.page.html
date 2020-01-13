@@ -2,13 +2,13 @@
   <ion-item>
     <ion-input type="text" placeholder="My QR code" [(ngModel)]="qrData"></ion-input>
   </ion-item>
-  <ion-button expand="full" icon-left (click)="createCode()"><ion-icon
-      name="barcode"></ion-icon>Create code</ion-button>
+  <ion-button expand="full" icon-left (click)="createCode()" translate><ion-icon
+      name="barcode"></ion-icon>myApp.createCode</ion-button>
 
   <ion-card *ngIf="createdCode">
     <ngx-qrcode [qrc-value]="createdCode"></ngx-qrcode>
     <ion-card-content>
-      <p>Value: {{createdCode}}</p>
+      <p>{{'myApp.value' | translate}}: {{createdCode}}</p>
     </ion-card-content>
   </ion-card>
 

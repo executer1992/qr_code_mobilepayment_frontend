@@ -11,12 +11,19 @@ export class MenuPage {
   public selectedPath: string = '';
   public pages = [
     {
-      tittle: 'Home',
-      url: '/menu/home'
+      tittle: 'myApp.homeTab',
+      url: '/menu/home/generate',
+      icon: 'home'
     },
     {
-      tittle: 'Account',
-      url: '/menu/account'
+      tittle: 'myApp.account',
+      url: '/menu/account/balance',
+      icon: 'contact'
+    },
+    {
+      tittle: 'myApp.changePassword',
+      url: '/menu/change-password',
+      icon: 'lock'
     }
   ];
   constructor(private router: Router, private authService: AuthService) {
