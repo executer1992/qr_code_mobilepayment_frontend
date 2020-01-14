@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../../data/services/user.service';
+import { UsersService } from '../../../data/services/users.service';
 
 @Component({
   selector: 'app-change-password',
@@ -8,7 +8,7 @@ import { UserService } from '../../../data/services/user.service';
 })
 export class ChangePasswordPage implements OnInit {
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UsersService) { }
 
   ngOnInit() {
   }

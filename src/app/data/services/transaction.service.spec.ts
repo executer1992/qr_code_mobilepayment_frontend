@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TransactionHistoryService } from './transaction-history.service';
+import { TransactionService } from './transaction.service';
 
-describe('TransactionHistoryService', () => {
+describe('TransactionService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: TransactionHistoryService = TestBed.get(TransactionHistoryService);
+    const service: TransactionService = TestBed.get(TransactionService);
     expect(service).toBeTruthy();
   });
 });

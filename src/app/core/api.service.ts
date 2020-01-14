@@ -16,6 +16,14 @@ export class ApiService {
     return this.http.post<any>(this.baseURL + url, data).pipe(this.catchError());
   }
 
+  patch(url: string, data): Observable<any> {
+    return this.http.patch<any>(this.baseURL + url, data).pipe(this.catchError());
+  }
+
+  delete(url:string) {
+    return this.http.delete<any>(this.baseURL + url).pipe(this.catchError());
+  }
+
   private catchError() {
     return (src: Observable<any>) =>
       src.pipe(

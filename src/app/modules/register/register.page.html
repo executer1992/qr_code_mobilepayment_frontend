@@ -5,7 +5,7 @@
         <ion-col (click)="goToLogin()" class="ion-align-self-center" size-md="6"
           size-lg="5"
           size-xs="12">
-          <ion-title class="ion-text-center"> Go to Login </ion-title>
+          <ion-title class="ion-text-center" translate>myApp.goToLoginBtn</ion-title>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -20,7 +20,7 @@
         <ion-col class="ion-align-self-center" size-md="6" size-lg="5"
           size-xs="12">
           <div class="ion-text-center">
-            <h3>Create your account!</h3>
+            <h3>{{'myApp.createAccount' | translate}}!</h3>
           </div>
           <div class="ion-padding">
             <ion-item>
@@ -46,7 +46,7 @@
           </div>
           <div class="ion-padding">
             <ion-button size="large" type="submit" [disabled]="form.invalid"
-              expand="block">Register</ion-button>
+              expand="block" translate>myApp.submit</ion-button>
           </div>
         </ion-col>
       </ion-row>

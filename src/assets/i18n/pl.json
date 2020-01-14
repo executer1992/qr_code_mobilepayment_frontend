@@ -1,0 +1,29 @@
+{
+  "myApp": {
+    "en": "Angielski",
+    "pl": "Polski",
+    "products": "Produkty",
+    "registerBackBtn": "Wroć do rejestracji",
+    "submit": "Zatwierdź",
+    "logout": "Wyloguj",
+    "homeTab": "Dom",
+    "generateQR": "Wygeneruj kod QR",
+    "scanQR": "Zeskanuj kod QR",
+    "account": "Konto",
+    "changePassword": "Zmień hasło",
+    "balance": "Saldo",
+    "paymentDone": "Wpłaty wysłane",
+    "paymentReceived": "Wpłaty otrzymane",
+    "yourBalaance": "Twoje saldo",
+    "connectCard": "Połącz swoją karte bankową",
+    "connect": "Połącz",
+    "payedSum": "Suma Twoich wysłanych wpłat",
+    "receivedSum": "Suma Twoich otrzymanych wpłat",
+    "createCode": "Stwórz QR kod",
+    "scanCode": "Zeskanuj kod",
+    "value": "Wartość",
+    "scanProcess": "Zeskanuj kod żeby przejść dalej",
+    "scanResult": "Wynik skanowania",
+    "createAccount": "Zarejestruj swoje konto"
+  }
+}

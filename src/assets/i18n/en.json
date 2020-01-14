@@ -1,0 +1,30 @@
+{
+  "myApp": {
+    "en": "English",
+    "pl": "Polish",
+    "products": "Products",
+    "registerBackBtn": "Back to register",
+    "goToLoginBtn": "Go to Login",
+    "submit": "Submit",
+    "logout": "Logout",
+    "homeTab": "Home",
+    "generateQR": "Generate QR code",
+    "scanQR": "Scan QR code",
+    "account": "Account",
+    "changePassword": "Change password",
+    "balance": "Balance",
+    "paymentDone": "Payment sent",
+    "paymentReceived": "Payment received",
+    "yourBalance": "Your balance",
+    "connectCard": "Connect your credit card",
+    "connect": "Connect",
+    "payedSum": "Sum of yours payment sent",
+    "receivedSum": "Sum of yours payment received",
+    "createCode": "Create QR code",
+    "scanCode": "Scan code",
+    "value": "Value",
+    "scanProcess": "Scan the Qr code to process",
+    "scanResult": "Result of your scan",
+    "createAccount": "Register your account"
+  }
+}

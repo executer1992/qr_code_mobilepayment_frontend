@@ -24,6 +24,11 @@ export class MenuPage {
       tittle: 'myApp.changePassword',
       url: '/menu/change-password',
       icon: 'lock'
+    },
+    {
+      tittle: 'myApp.products',
+      url: '/menu/products',
+      icon: 'basket'
     }
   ];
   constructor(private router: Router, private authService: AuthService) {
