@@ -1,7 +1,16 @@
-<app-header title="Change Password"></app-header>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add Product</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content class="ion-padding">
-  <form #form="ngForm" (ngSubmit)="changePassword(form)">
+  <form #form="ngForm" (ngSubmit)="addProduct(form)">
     <ion-grid>
       <ion-row color="primary" class="ion-justify-content-center">
         <ion-col class="ion-align-self-center" size-md="6" size-lg="5" size-xs="12">
@@ -10,14 +19,10 @@
           </div>
           <div class="ion-padding">
             <ion-item>
-              <ion-input name="password" type="password" placeholder="Current Password" ngModel required></ion-input>
+              <ion-input name="product_name" type="text" placeholder="Product name" ngModel required></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input name="new_password" type="password" placeholder="New Password" ngModel required></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-input name="confirm_password" type="password" placeholder="Confirm new Password" ngModel required></ion-input>
+              <ion-input name="product_price" type="number" placeholder="Product price" ngModel required></ion-input>
             </ion-item>
           </div>
           <div class="ion-padding">

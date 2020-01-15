@@ -12,15 +12,14 @@ import { throwError } from 'rxjs';
 export class LoginPage {
   constructor(private authService: AuthService, private router: Router, private loaderSrv: LoaderService) {}
 
-  login(form) {
+  public login(form): void {
     this.loaderSrv.loadingPresent();
     this.authService
       .login(form.value)
       .pipe(
         first(),
         tap(_ => {
-          this.router.navigateByUrl('menu/home');
-          this.loaderSrv.loadingDismiss();
+          this.loaderSrv.loadingDismiss().then(res => this.router.navigateByUrl('menu/home'));
         }),
         catchError(error => {
           this.loaderSrv.loadingDismiss();
@@ -28,5 +27,9 @@ export class LoginPage {
         })
       )
       .subscribe();
+  }
+
+  public goToRegister(): void {
+    this.router.navigateByUrl('register');
   }
 }

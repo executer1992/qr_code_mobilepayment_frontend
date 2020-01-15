@@ -18,17 +18,14 @@ const routes: Routes = [
       },
       {
         path: 'change-password',
-        loadChildren: () => import('./change-password/change-password.module').then( m => m.ChangePasswordPageModule)
+        loadChildren: () => import('./change-password/change-password.module').then(m => m.ChangePasswordPageModule)
       },
       {
         path: 'products',
-        loadChildren: () => import('./products/products.module').then( m => m.ProductsPageModule)
+        loadChildren: () => import('./products/products.module').then(m => m.ProductsPageModule)
       }
     ]
-  },
-
-
-
+  }
 ];
 
 @NgModule({

@@ -5,9 +5,11 @@ import { GenerateQrCodePageRoutingModule } from './generateQrCode-routing.module
 import { GenerateQrCodePage } from './generateQrCode.page';
 import { SharedModule } from '../../../../shared/shared.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { ProductsService } from 'src/app/data/services/products.service';
 
 @NgModule({
   imports: [SharedModule, GenerateQrCodePageRoutingModule, NgxQRCodeModule, TranslateModule],
-  declarations: [GenerateQrCodePage]
+  declarations: [GenerateQrCodePage],
+  providers: [ProductsService]
 })
 export class GenerateQrCodePageModule {}

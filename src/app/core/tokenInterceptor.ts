@@ -7,11 +7,16 @@ import { Storage } from '@ionic/storage';
 import { fromPromise } from 'rxjs/internal-compatibility';
 
 @Injectable()
-export class HeaderInterceptor implements HttpInterceptor {
+export class TokenInterceptor implements HttpInterceptor {
   constructor(private storage: Storage) {}
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-      request = request.clone({ headers: request.headers.set('Accept', 'application/json') });
-      request = request.clone({ headers: request.headers.set('Content-Type', 'application/json') });
-      return next.handle(request);
+    return fromPromise(this.storage.get('ACCESS_TOKEN')).pipe(
+      switchMap(token => {
+        if (token) {
+          request = request.clone({ headers: request.headers.set('Authorization', `Bearer ${token}`) });
+        }
+        return next.handle(request);
+      })
+    );
   }
 }

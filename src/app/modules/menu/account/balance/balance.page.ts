@@ -5,22 +5,24 @@ import { Observable, Subscription } from 'rxjs';
 @Component({
   selector: 'app-balance',
   templateUrl: './balance.page.html',
-  styleUrls: ['./balance.page.scss'],
+  styleUrls: ['./balance.page.scss']
 })
-export class BalancePage implements OnInit, OnDestroy {
-
+export class BalancePage {
   private subscription: Subscription = new Subscription();
   public transaction: Observable<any>;
 
   constructor(private transactionService: TransactionService) {}
 
-  ngOnInit() {
-    this.transactionService.getTransactionHistory();
-    this.subscription.add(this.transactionService.transactionHistory$.subscribe(transaction => this.transaction = transaction))
+  ionViewWillEnter() {
+    this.subscription.add(this.transactionService.getTransactionHistory().subscribe());
+    this.subscription.add(
+      this.transactionService.transactionHistory$.subscribe(
+        transaction => (this.transaction = transaction)
+      )
+    );
   }
 
-  ngOnDestroy() {
+  ionViewWillLeave() {
     this.subscription.unsubscribe();
   }
-
 }

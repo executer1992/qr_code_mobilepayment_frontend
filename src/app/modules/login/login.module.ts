@@ -7,7 +7,7 @@ import { LoginPage } from './login.page';
 import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
-  imports: [SharedModule, LoginPageRoutingModule, TranslateModule.forChild()],
+  imports: [SharedModule, LoginPageRoutingModule, TranslateModule],
   declarations: [LoginPage],
   providers: [LoaderService]
 })

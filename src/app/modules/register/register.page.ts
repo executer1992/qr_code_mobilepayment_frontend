@@ -1,4 +1,5 @@
-import { AuthService } from '../../shared/auth.service';
+import { first, tap } from 'rxjs/operators';
+import { User } from './../../data/models/user';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsersService } from '../../data/services/users.service';
@@ -14,9 +15,14 @@ export class RegisterPage implements OnInit {
   ngOnInit() {}
 
   register(form) {
-    this.userService.register(form.value).subscribe(res => {
-      this.router.navigateByUrl('menu/home');
-    });
+    const user: User = form.value;
+    this.userService
+      .register(user)
+      .pipe(
+        first(),
+        tap(_ => this.router.navigateByUrl('menu/home'))
+      )
+      .subscribe();
   }
 
   goToLogin() {

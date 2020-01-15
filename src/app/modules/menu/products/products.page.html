@@ -1,0 +1,16 @@
+<app-header title="Products"> </app-header>
+
+<ion-content>
+  <ion-fab-button class="ion-padding">
+    <ion-icon name="add" (click)="openModal()"></ion-icon>
+  </ion-fab-button>
+
+  <ion-list *ngIf="productService.products$ | async as products">
+    <ion-item *ngFor="let product of products">
+      <ion-label>
+        <h2>{{product.product_name}}</h2>
+        <p>{{product.product_price}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

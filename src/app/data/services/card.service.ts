@@ -14,30 +14,24 @@ export class CardService {
   constructor(private apiService: ApiService, private storage: Storage) {}
 
   public verifyCard() {
-    this.apiService
-      .get(this.cardRoute)
-      .pipe(
-        first(),
-        tap(_ => this.cardConnected.next(true)),
-        catchError(error => {
-          this.cardConnected.next(false);
-          return throwError(error || 'Server error');
-        })
-      )
-      .subscribe();
+    return this.apiService.get(this.cardRoute).pipe(
+      first(),
+      tap(_ => this.cardConnected.next(true)),
+      catchError(error => {
+        this.cardConnected.next(false);
+        return throwError(error || 'Server error');
+      })
+    );
   }
 
   public connect(data) {
-    return this.apiService
-      .post(this.cardRoute, data)
-      .pipe(
-        first(),
-        tap(_ => this.cardConnected.next(true)),
-        catchError(error => {
-          this.cardConnected.next(false);
-          return throwError(error || 'Server error');
-        })
-      )
-      .subscribe();
+    return this.apiService.post(this.cardRoute, data).pipe(
+      first(),
+      tap(_ => this.cardConnected.next(true)),
+      catchError(error => {
+        this.cardConnected.next(false);
+        return throwError(error || 'Server error');
+      })
+    );
   }
 }

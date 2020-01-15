@@ -1,5 +1,5 @@
 import { AuthService } from './../../shared/auth.service';
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { Router, RouterEvent } from '@angular/router';
 
 @Component({
@@ -11,9 +11,9 @@ export class MenuPage {
   public selectedPath: string = '';
   public pages = [
     {
-      tittle: 'myApp.homeTab',
+      tittle: 'myApp.qrPanel',
       url: '/menu/home/generate',
-      icon: 'home'
+      icon: 'cog'
     },
     {
       tittle: 'myApp.account',

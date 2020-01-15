@@ -1,26 +1,32 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { TransactionService } from '../../../../data/services/transaction.service';
+import { map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-payment-received',
   templateUrl: './payment-received.page.html',
-  styleUrls: ['./payment-received.page.scss'],
+  styleUrls: ['./payment-received.page.scss']
 })
-export class PaymentReceivedPage implements OnInit, OnDestroy {
-
+export class PaymentReceivedPage {
   private subscription: Subscription = new Subscription();
-  public transaction: Observable<any>;
+  public transactions: number = 0;
 
   constructor(private transactionService: TransactionService) {}
 
-
-  ngOnInit() {
-    this.transactionService.getTransactionHistory();
-    this.subscription.add(this.transactionService.transactionHistory$.subscribe(transaction => this.transaction = transaction))
+  ionViewWillEnter() {
+    this.subscription.add(
+      this.transactionService
+        .getTransactionHistory()
+        .pipe(
+          map(transactions => transactions.receivedSum),
+          tap(recievedTransactions => (this.transactions = recievedTransactions))
+        )
+        .subscribe()
+    );
   }
 
-  ngOnDestroy() {
+  ionViewWillLeave() {
     this.subscription.unsubscribe();
   }
 }

@@ -10,21 +10,26 @@ import { switchMap, take, tap } from 'rxjs/operators';
   templateUrl: './account.page.html',
   styleUrls: ['./account.page.scss']
 })
-export class AccountPage implements OnInit, OnDestroy {
+export class AccountPage {
   private subscription: Subscription = new Subscription();
   public cardConnected: boolean = false;
 
-  ngOnInit(): void {
-    this.cardService.verifyCard();
-    this.subscription.add(this.cardService.cardConnected$.pipe(tap(connected => (this.cardConnected = connected))).subscribe());
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
   constructor(private cardService: CardService) {}
 
+  ionViewWillEnter() {
+    this.subscription.add(this.cardService.verifyCard().subscribe());
+    this.subscription.add(
+      this.cardService.cardConnected$
+        .pipe(tap(connected => (this.cardConnected = connected)))
+        .subscribe()
+    );
+  }
+
   connectt(creditCard) {
-    this.cardService.connect(creditCard);
+    this.subscription.add(this.cardService.connect(creditCard).subscribe());
+  }
+
+  ionViewWillLeave() {
+    this.subscription.unsubscribe();
   }
 }

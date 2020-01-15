@@ -21,6 +21,10 @@ const routes: Routes = [
     path: 'menu',
     loadChildren: () => import('./modules/menu/menu.module').then(m => m.MenuPageModule)
     // canActivate: [AuthGuard]
+  },
+  {
+    path: 'add-product-modal',
+    loadChildren: () => import('./data/modals/add-product-modal/add-product-modal.module').then( m => m.AddProductModalPageModule)
   }
 ];
 @NgModule({
