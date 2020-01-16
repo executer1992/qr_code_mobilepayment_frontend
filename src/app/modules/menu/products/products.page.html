@@ -1,0 +1,14 @@
+<app-header title="myApp.products"></app-header>
+<ion-toolbar class="ion-padding">
+  <ion-fab-button color="primary" (click)="openModal()">New</ion-fab-button>
+</ion-toolbar>
+<ion-content>
+  <ion-list *ngIf="products">
+    <ion-item *ngFor="let product of products">
+      <ion-label>
+        <h2>{{product.product_name}}</h2>
+        <ion-text>{{product.product_price}}</ion-text>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

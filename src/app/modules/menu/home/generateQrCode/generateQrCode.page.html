@@ -1,35 +1,22 @@
 <ion-content class="ion-padding">
-  <form #form="ngForm" (ngSubmit)="createCode(form)">
-    <ion-grid>
-      <ion-row color="primary" class="ion-justify-content-center">
-        <ion-col class="ion-align-self-center" size-md="6" size-lg="5" size-xs="12">
-          <div class="ion-text-center">
-            <h3></h3>
-          </div>
-          <div class="ion-padding">
-            <ion-item>
-              <ion-input name="password" type="password" placeholder="Product name" ngModel required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input name="new_password" type="password" placeholder="Product price" ngModel required></ion-input>
-            </ion-item>
+  <ion-list>
+    <ion-list-header>Multiple Selection</ion-list-header>
 
-          </div>
-          <div class="ion-padding">
-            <ion-button  icon-left [disabled]="form.invalid" translate
-              ><ion-icon expand="block" name="barcode"></ion-icon>myApp.createCode</ion-button
-            >
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </form>
+    <ion-item>
+      <ion-label>Product</ion-label>
+      <ion-select multiple="true" [(ngModel)]="selectedProducts" [selectedText]="selectedProducts" name="selectProduct" *ngIf="products">
+        <ion-select-option *ngFor="let product of products" value="{{product.product_id}}">
+          {{product.product_name}} - {{product.product_price}}</ion-select-option
+        >
+      </ion-select>
+    </ion-item>
+  </ion-list>
 
-  <!--<ion-item>-->
-  <!--<ion-input type="text" placeholder="My QR code" [(ngModel)]="qrData"></ion-input>-->
-  <!--</ion-item>-->
-  <!--<ion-button expand="full" icon-left (click)="createCode()" translate><ion-icon-->
-  <!--name="barcode"></ion-icon>myApp.createCode</ion-button>-->
+  <div class="ion-padding ion-text-center">
+    <ion-button icon-left (click)="createCode()" translate>
+      <ion-icon name="barcode" style="margin-right: 10px"></ion-icon> {{ 'myApp.createCode' | translate}}
+    </ion-button>
+  </div>
 
   <ion-card *ngIf="createdCode">
     <ngx-qrcode [qrc-value]="createdCode"></ngx-qrcode>
@@ -37,5 +24,4 @@
       <p>{{'myApp.value' | translate}}: {{createdCode}}</p>
     </ion-card-content>
   </ion-card>
-
 </ion-content>

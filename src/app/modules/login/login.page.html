@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="dark">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/register"></ion-back-button>
     </ion-buttons>
@@ -7,33 +7,64 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content color="primary" class="ion-padding">
-  <form #form="ngForm" (ngSubmit)="login(form)">
-    <ion-grid>
-      <ion-row color="primary" class="ion-justify-content-center">
-        <ion-col class="ion-align-self-center" size-md="6" size-lg="5"
-          size-xs="12">
-          <div class="ion-text-center">
-            <h3>Login</h3>
-          </div>
-          <div class="ion-padding">
-            <ion-item>
-              <ion-input name="email" type="email" placeholder="your@email.com"
-                ngModel required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input name="password" type="password" placeholder="Password"
-                ngModel required></ion-input>
-            </ion-item>
-          </div>
-          <div class="ion-padding">
-            <ion-button size="large" type="submit" [disabled]="form.invalid"
-              expand="block" translate>myApp.submit</ion-button>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </form>
-</ion-content>
+<!--<ion-content color="primary" class="ion-padding">-->
+  <!--<form #form="ngForm" (ngSubmit)="login(form)">-->
+    <!--<ion-grid>-->
+      <!--<ion-row color="primary" class="ion-justify-content-center">-->
+        <!--<ion-col class="ion-align-self-center" size-md="6" size-lg="5"-->
+          <!--size-xs="12">-->
+          <!--<div class="ion-text-center">-->
+            <!--<h3>Login</h3>-->
+          <!--</div>-->
+          <!--<div class="ion-padding">-->
+            <!--<ion-item>-->
+              <!--<ion-input name="email" type="email" placeholder="your@email.com"-->
+                <!--ngModel required>-->
+              <!--</ion-input>-->
+            <!--</ion-item>-->
+            <!--<ion-item>-->
+              <!--<ion-input name="password" type="password" placeholder="Password"-->
+                <!--ngModel required></ion-input>-->
+            <!--</ion-item>-->
+          <!--</div>-->
+          <!--<div class="ion-padding">-->
+            <!--<ion-button size="large" type="submit" [disabled]="form.invalid"-->
+              <!--expand="block" translate>myApp.submit</ion-button>-->
+          <!--</div>-->
+        <!--</ion-col>-->
+      <!--</ion-row>-->
+    <!--</ion-grid>-->
+  <!--</form>-->
+<!--</ion-content>-->
 
+<ion-content>
+  <div class="login">
+    <div class="login_title">
+      <h3>Login to your account</h3>
+    </div>
+    <form class="login_fields" #form="ngForm" (ngSubmit)="login(form)">
+      <div class="login_fields__user">
+        <div class="icon">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/user_icon_copy.png">
+        </div>
+        <input name="email" type="email" placeholder="your@email.com"
+               ngModel required>
+      </div>
+      <div class="login_fields__password">
+        <div class="icon">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/lock_icon_copy.png">
+        </div>
+        <input name="password" type="password" placeholder="Password"
+               ngModel required>
+        <div class="login_fields__submit">
+          <input type="submit" value="Log In">
+          <div class="forgot">
+            <a href="#">Forgotten password?</a>
+          </div>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</ion-content>
 

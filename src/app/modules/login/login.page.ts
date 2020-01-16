@@ -18,6 +18,7 @@ export class LoginPage {
       .login(form.value)
       .pipe(
         first(),
+        delay(500),
         tap(_ => {
           this.router.navigateByUrl('menu/home');
           this.loaderSrv.loadingDismiss();
