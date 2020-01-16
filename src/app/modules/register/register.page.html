@@ -60,39 +60,39 @@
     </div>
     <form class="login_fields" form #form="ngForm" (ngSubmit)="register(form)">
       <div class="login_fields__user">
-        <div class="icon">
+        <!-- <div class="icon">
           <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/user_icon_copy.png">
-        </div>
-        <input name="name" type="text" placeholder="Name" ngModel
+        </div> -->
+        <input name="name" type="text" placeholder="{{'myApp.name' | translate}}" ngModel
                required>
       </div>
       <div class="login_fields__user">
-        <div class="icon">
+        <!-- <div class="icon">
           <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/user_icon_copy.png">
-        </div>
-        <input name="surname" type="text" placeholder="Surname" ngModel
+        </div> -->
+        <input name="surname" type="text" placeholder="{{'myApp.surname' | translate}}" ngModel
                required>
       </div>
       <div class="login_fields__user">
-        <div class="icon">
+        <!-- <div class="icon">
           <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/user_icon_copy.png">
-        </div>
-        <input name="email" type="email" placeholder="your@email.com"
+        </div> -->
+        <input name="email" type="email" placeholder="{{'myApp.email' | translate}}"
                ngModel required>
       </div>
       <div class="login_fields__user">
-        <div class="icon">
+        <!-- <div class="icon">
           <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/user_icon_copy.png">
-        </div>
-        <input name="password" type="password" placeholder="Password"
+        </div> -->
+        <input name="password" type="password" placeholder="{{'myApp.password' | translate}}"
                ngModel required>
       </div>
       <div class="login_fields__user">
-        <div class="icon">
+        <!-- <div class="icon">
           <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/user_icon_copy.png">
-        </div>
+        </div> -->
         <input name="confirm" type="password"
-               placeholder="Confirmation Password" ngModel required>
+               placeholder="{{'myApp.confirm_password' | translate}}" ngModel required>
       </div>
       <div class="login_fields__submit">
         <input type="submit" value="{{'myApp.submit' | translate}}">

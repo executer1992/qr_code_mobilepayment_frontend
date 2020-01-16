@@ -3,7 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { ProductsService } from '../../services/products.service';
 import { Product } from '../../models/product';
 import { catchError, tap } from 'rxjs/operators';
-import { ToastColor, ToastService } from '../../services/toast.service';
+import { ToastColor, ToastService } from '../../../shared/toast.service';
 
 @Component({
   selector: 'app-add-product',
@@ -14,7 +14,7 @@ export class AddProductPage {
   constructor(private productService: ProductsService, private modalController: ModalController, public toastService: ToastService) {}
 
   async closeModal() {
-    await this.modalController.dismiss();
+    await this.modalController.dismiss(null, 'cancel');
   }
 
   public addProduct(productForm): void {

@@ -2,6 +2,11 @@
   "myApp": {
     "en": "Angielski",
     "pl": "Polski",
+    "name": "Imię",
+    "surname": "Nazwisko",
+    "email": "Adres email",
+    "password": "Hasło",
+    "confirm_password": "Potwierdź hasło",
     "products": "Produkty",
     "addProduct": "Dodaj produkt",
     "registerBackBtn": "Wroć do rejestracji",

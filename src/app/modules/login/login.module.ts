@@ -1,5 +1,4 @@
 import { SharedModule } from '../../shared/shared.module';
-import { LoaderService } from '../../shared/loader.service';
 import { NgModule } from '@angular/core';
 import { LoginPageRoutingModule } from './login-routing.module';
 
@@ -8,7 +7,6 @@ import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [SharedModule, LoginPageRoutingModule, TranslateModule.forChild()],
-  declarations: [LoginPage],
-  providers: [LoaderService]
+  declarations: [LoginPage]
 })
 export class LoginPageModule {}

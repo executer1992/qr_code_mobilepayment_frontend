@@ -12,9 +12,12 @@ export class TransactionService {
   constructor(private apiService: ApiService) {}
 
   public getTransactionHistory() {
-    return this.apiService.get(this.endpoint).pipe(
-      first(),
-      tap(response => this.transactionHistory.next(response))
-    ).subscribe();
+    return this.apiService
+      .get(this.endpoint)
+      .pipe(
+        first(),
+        tap(response => this.transactionHistory.next(response))
+      )
+      .subscribe();
   }
 }

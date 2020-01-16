@@ -11,11 +11,10 @@ export enum ToastColor {
   LIGHT = 'light',
   MEDIUM = 'medium',
   DARK = 'dark'
-};
+}
 
 @Injectable()
 export class ToastService {
-
   constructor(private toastController: ToastController) {}
 
   async presentToast(text: string, status: ToastColor): Promise<void> {
@@ -28,11 +27,10 @@ export class ToastService {
       buttons: [
         {
           text: 'Done',
-          role: 'cancel',
+          role: 'cancel'
         }
       ]
     });
     toast.present();
   }
-
 }

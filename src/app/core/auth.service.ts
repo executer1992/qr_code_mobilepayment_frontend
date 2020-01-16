@@ -1,18 +1,19 @@
 import { Platform } from '@ionic/angular';
 import { Injectable } from '@angular/core';
-import { tap} from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { Observable, BehaviorSubject, of } from 'rxjs';
 
 import { Storage } from '@ionic/storage';
 import { User } from '../data/models/user';
 import { AuthResponse } from '../data/models/auth-response';
-import { ApiService } from '../core/api.service';
+import { ApiService } from './api.service';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AuthService {
   private authenticated: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private apiService: ApiService, private storage: Storage, private platform: Platform) {
+    console.log(5);
     this.platform.ready().then(() => {
       this.ifLoggedIn();
     });

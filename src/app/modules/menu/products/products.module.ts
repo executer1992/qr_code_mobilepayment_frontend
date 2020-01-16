@@ -1,3 +1,4 @@
+import { AddProductPage } from './../../../data/modals/add-product/add-product-modal.component';
 import { NgModule } from '@angular/core';
 import { ProductsPageRoutingModule } from './products-routing.module';
 
@@ -13,6 +14,7 @@ import { AddProductModalModule } from '../../../data/modals/add-product/add-prod
     AddProductModalModule
   ],
   declarations: [ProductsPage],
+  entryComponents: [ProductsPage, AddProductPage],
   providers: [ProductsService]
 })
 export class ProductsPageModule {}

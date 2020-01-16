@@ -1,7 +1,7 @@
-import { AuthService } from './auth.service';
+import { ToastService } from 'src/app/shared/toast.service';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
-import { LoaderService } from './loader.service';
+import { LoaderService } from './header/loader.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
@@ -13,6 +13,7 @@ import { TranslateModule } from '@ngx-translate/core';
   declarations: [HeaderComponent],
   imports: [CommonModule, IonicModule, FormsModule, CoreModule, IonicStorageModule.forRoot(), TranslateModule],
   exports: [CommonModule, IonicModule, FormsModule, CoreModule, HeaderComponent],
-  providers: [LoaderService, AuthService]
+  entryComponents: [HeaderComponent],
+  providers: [LoaderService, ToastService]
 })
 export class SharedModule {}
