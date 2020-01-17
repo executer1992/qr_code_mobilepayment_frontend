@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css?family=Gudea&display=swap');
+.login {
+  border-top: 2px solid #d8312a;
+  height: 100%;
+  background: #35394a; /* Old browsers */
+  background: -moz-linear-gradient(45deg, #35394a 0%, #1f222e 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left bottom, right top, color-stop(0%, #35394a), color-stop(100%, #1f222e)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(45deg, #35394a 0%, #1f222e 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(45deg, #35394a 0%, #1f222e 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(45deg, #35394a 0%, #1f222e 100%); /* IE10+ */
+  background: linear-gradient(45deg, #35394a 0%, #1f222e 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#35394a', endColorstr='#1f222e',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  &_title {
+    color: rgb(175, 177, 190);
+    height: 60px;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Gudea', sans-serif;
+  }
+  &_fields {
+    width: 100%;
+    text-align: center;
+    height: 58%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .icon {
+      position: absolute;
+      z-index: 1;
+      left: 36px;
+      top: 13px;
+      opacity: 1;
+    }
+    input[type='password'] {
+      color: #dc6180 !important;
+    }
+    input[type='email'],
+    input[type='text'],
+    input[type='password'] {
+      color: #afb1be;
+      width: 100%;
+      margin-top: -2px;
+      background: rgb(50, 54, 74);
+      left: 0;
+      padding: 10px 65px;
+      border-top: 2px solid rgb(57, 61, 82);
+      border-bottom: 2px solid rgb(57, 61, 82);
+      border-right: none;
+      border-left: none;
+      outline: none;
+      font-family: 'Gudea', sans-serif;
+      box-shadow: none;
+    }
+    &__user,
+    &__password {
+      position: relative;
+      margin: 10px 0;
+    }
+    //&__submit {
+    //  position: relative;
+    //  top: 35px;
+    //  left: 0;
+    //  width: 80%;
+    //  right: 0;
+    //  margin: auto;
+    //}
+  }
+}

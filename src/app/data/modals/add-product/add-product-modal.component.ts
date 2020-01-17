@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, ViewChild } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ProductsService } from '../../services/products.service';
 import { Product } from '../../models/product';
-import { catchError, tap } from 'rxjs/operators';
-import { ToastColor, ToastService } from '../../../shared/toast.service';
+import { distinctUntilChanged, exhaustMap, mapTo, tap } from 'rxjs/operators';
+import { fromEvent, Observable, of, Subscription } from 'rxjs';
+import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-product',
@@ -11,23 +12,64 @@ import { ToastColor, ToastService } from '../../../shared/toast.service';
   styleUrls: ['./add-product-modal.component.scss']
 })
 export class AddProductPage {
-  constructor(private productService: ProductsService, private modalController: ModalController, public toastService: ToastService) {}
+  @Input() productName: string;
+  @Input() productPrice: number;
+  @Input() product: Product;
+  @Input() title: string;
+  @Output('productOperation') productOperation;
+  @ViewChild('productOperationBtn', { static: false }) productOperationBtn;
+  private subscription: Subscription = new Subscription();
+  public productForm: FormGroup = this.formBuilder.group({
+    product_name: ['', Validators.required],
+    product_price: ['', [Validators.required, Validators.pattern(/^\d{1,6}\.\d{0,2}$/)]]
+  });
+  constructor(
+    private productService: ProductsService,
+    private modalController: ModalController,
+    private formBuilder: FormBuilder
+  ) {}
+
+  public ionViewWillEnter(): void {
+    const click$: Observable<any> = fromEvent(this.productOperationBtn.el, 'click');
+    this.subscription.add(
+      click$
+        .pipe(
+          mapTo(this.productForm),
+          tap(console.log),
+          distinctUntilChanged(),
+          exhaustMap(() => {
+            this.emitProductOperation(this.productForm);
+            return of(null);
+          })
+        )
+        .subscribe()
+    );
+  }
+
+  public ionViewDidEnter(): void {
+    if (this.product) {
+      console.log(this.productForm.get('product_price'));
+      console.log(this.productForm.get('product_name'))
+      this.productForm.get('product_name').setValue(this.product.product_name);
+      this.productForm.get('product_price').setValue(this.product.product_price);
+    }
+  }
+
+  public ionViewWillLeave(): void {
+    this.subscription.unsubscribe();
+  }
 
   async closeModal() {
     await this.modalController.dismiss(null, 'cancel');
   }
 
-  public addProduct(productForm): void {
-    const product: Product = productForm.value;
+  private emitProductOperation(productForm: FormGroup): void {
+    const product: Product = {
+      ...this.product,
+      product_name: productForm.value.product_name,
+      product_price: productForm.value.product_price
+    };
 
-    this.productService
-      .addProduct(product)
-      .pipe(
-        tap(_ => {
-          this.toastService.presentToast('Product has been added!', ToastColor.SUCCESS).then(_ => this.closeModal());
-        }),
-        catchError(error => this.toastService.presentToast(error.message || 'Internal Server Error', ToastColor.WARNING))
-      )
-      .subscribe();
+    this.productOperation(product);
   }
 }

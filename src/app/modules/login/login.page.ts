@@ -29,7 +29,7 @@ export class LoginPage {
           this.loaderSrv.loadingDismiss().then(res => this.router.navigateByUrl('menu/home'));
         }),
         catchError(error => {
-          this.loaderSrv.loadingDismiss().then(response => this.toastService.presentToast('Wrong credentials', ToastColor.DANGER));
+          this.loaderSrv.loadingDismiss().then(response => this.toastService.presentToast(error.error.message, ToastColor.DANGER));
           return throwError(error);
         })
       )

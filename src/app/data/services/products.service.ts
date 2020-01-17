@@ -1,8 +1,8 @@
 import { ApiService } from './../../core/api.service';
 import { Injectable } from '@angular/core';
 import { Product } from '../models/product';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { first, tap } from 'rxjs/operators';
+import { BehaviorSubject, EMPTY, Observable, of } from 'rxjs';
+import { distinctUntilChanged, first, tap } from 'rxjs/operators';
 
 @Injectable()
 export class ProductsService {
@@ -11,9 +11,7 @@ export class ProductsService {
 
   private endpoint: string = 'products';
 
-  constructor(private apiService: ApiService) {
-    console.log(5);
-  }
+  constructor(private apiService: ApiService) {}
 
   public getProduct(productId: string) {
     return this.apiService
@@ -26,16 +24,18 @@ export class ProductsService {
   }
 
   public getProducts() {
-    return this.products.getValue() !== null
-      ? this.products$
-      : this.apiService.get(this.endpoint).pipe(
-          first(),
-          tap(products => this.products.next(products))
-        );
+    if (this.products.getValue() === null ) {
+      return this.apiService.get(this.endpoint).pipe(
+        first(),
+        tap(products => this.products.next(products))
+      );
+    }
+    return of(EMPTY);
   }
 
   public addProduct(product: Product) {
     return this.apiService.post(this.endpoint, product).pipe(
+      distinctUntilChanged(),
       first(),
       tap(addedProduct => this.addProductToSubj(addedProduct))
     );
@@ -47,8 +47,7 @@ export class ProductsService {
       .pipe(
         first(),
         tap(_ => this.editProductInSubj(product))
-      )
-      .subscribe();
+      );
   }
 
   public removeProduct(productId: string) {
@@ -61,6 +60,7 @@ export class ProductsService {
   private addProductToSubj(product: Product) {
     const currentProducts: Product[] = this.products.getValue();
     const updatedProducts: Product[] = currentProducts !== null ? [...currentProducts, product] : [product];
+    console.log(updatedProducts);
     this.products.next(updatedProducts);
   }
 

@@ -20,6 +20,10 @@ export class ApiService {
     return this.http.patch<any>(this.baseURL + url, data).pipe(this.catchError());
   }
 
+  put(url: string, data): Observable<any> {
+    return this.http.put<any>(this.baseURL + url, data).pipe(this.catchError());
+  }
+
   delete(url:string) {
     return this.http.delete<any>(this.baseURL + url).pipe(this.catchError());
   }

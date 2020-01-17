@@ -1,25 +1,55 @@
-<form #form="ngForm" (ngSubmit)="connectCard(form)">
-  <ion-grid>
-    <ion-row color="primary" class="ion-justify-content-center">
-      <ion-col class="ion-align-self-center" size-md="6" size-lg="5" size-xs="12">
-        <div class="ion-text-center">
-          <h3 translate>myApp.connectCard</h3>
+<!--<form #form="ngForm" (ngSubmit)="connectCard(form)">-->
+  <!--<ion-grid>-->
+    <!--<ion-row color="primary" class="ion-justify-content-center">-->
+      <!--<ion-col class="ion-align-self-center" size-md="6" size-lg="5" size-xs="12">-->
+        <!--<div class="ion-text-center">-->
+          <!--<h3 translate>myApp.connectCard</h3>-->
+        <!--</div>-->
+        <!--<div class="ion-padding">-->
+          <!--<ion-item>-->
+            <!--<ion-input name="credit_card_cardholder_name" type="text" placeholder="Cardholder name" ngModel required></ion-input>-->
+          <!--</ion-item>-->
+          <!--<ion-item>-->
+            <!--<ion-input name="credit_card_number" type="text" placeholder="Card number" ngModel required></ion-input>-->
+          <!--</ion-item>-->
+          <!--<ion-item>-->
+            <!--<ion-input name="credit_card_code" type="text" placeholder="Card code" ngModel required></ion-input>-->
+          <!--</ion-item>-->
+        <!--</div>-->
+        <!--<div class="ion-padding ion-text-center">-->
+          <!--<ion-button type="submit" [disabled]="form.invalid" translate>myApp.connect</ion-button>-->
+        <!--</div>-->
+      <!--</ion-col>-->
+    <!--</ion-row>-->
+  <!--</ion-grid>-->
+<!--</form>-->
+<ion-card>
+  <ion-card-header class="ion-text-center">
+    <h3 translate>myApp.connectCard</h3>
+  </ion-card-header>
+  <ion-card-content>
+    <form class="login_fields" #form="ngForm" (ngSubmit)="connectCard(form)">
+      <div class="login_fields__user">
+        <div class="icon">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/user_icon_copy.png">
         </div>
+        <input name="credit_card_cardholder_name" type="text" placeholder="Cardholder name" ngModel required>
+      </div>
+      <div class="login_fields__user">
+        <div class="icon">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/user_icon_copy.png">
+        </div>
+        <input name="credit_card_cardholder_name" type="text" placeholder="Cardholder name" ngModel required>
+      </div>
+      <div class="login_fields__user">
+        <div class="icon">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/user_icon_copy.png">
+        </div>
+        <input name="credit_card_code" type="text" placeholder="Card code" ngModel required>
         <div class="ion-padding">
-          <ion-item>
-            <ion-input name="credit_card_cardholder_name" type="text" placeholder="Cardholder name" ngModel required></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-input name="credit_card_number" type="text" placeholder="Card number" ngModel required></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-input name="credit_card_code" type="text" placeholder="Card code" ngModel required></ion-input>
-          </ion-item>
+          <ion-button shape="round" type="submit" fill="outline">{{'myApp.connect' | translate}}</ion-button>
         </div>
-        <div class="ion-padding ion-text-center">
-          <ion-button type="submit" [disabled]="form.invalid" translate>myApp.connect</ion-button>
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-</form>
+      </div>
+    </form>
+  </ion-card-content>
+</ion-card>

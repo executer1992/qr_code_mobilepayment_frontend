@@ -13,7 +13,6 @@ export class AuthService {
   private authenticated: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private apiService: ApiService, private storage: Storage, private platform: Platform) {
-    console.log(5);
     this.platform.ready().then(() => {
       this.ifLoggedIn();
     });
