@@ -14,12 +14,11 @@ export class BalancePage implements OnInit, OnDestroy {
 
   constructor(private transactionService: TransactionService) {}
 
-  ngOnInit() {
-    this.transactionService.getTransactionHistory();
-    this.subscription.add(this.transactionService.transactionHistory$.subscribe(transaction => this.transaction = transaction))
+  ionViewWillEnter() {
+    this.subscription.add(this.transactionService.getTransactionHistory().subscribe());
   }
 
-  ngOnDestroy() {
+  ionViewWillLeave() {
     this.subscription.unsubscribe();
   }
 

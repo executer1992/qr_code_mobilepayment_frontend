@@ -17,8 +17,7 @@ export class TransactionService {
       .pipe(
         first(),
         tap(response => this.transactionHistory.next(response))
-      )
-      .subscribe();
+      );
   }
 
   public addTransaction(transactionData) {
