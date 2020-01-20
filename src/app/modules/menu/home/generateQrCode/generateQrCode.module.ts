@@ -1,3 +1,4 @@
+import { AuthService } from './../../../../core/auth.service';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { NgModule } from '@angular/core';
 import { GenerateQrCodePageRoutingModule } from './generateQrCode-routing.module';
@@ -10,6 +11,7 @@ import { ProductsService } from '../../../../data/services/products.service';
 @NgModule({
   imports: [SharedModule, GenerateQrCodePageRoutingModule, NgxQRCodeModule, TranslateModule],
   declarations: [GenerateQrCodePage],
-  providers: [ProductsService]
+  entryComponents: [GenerateQrCodePage],
+  providers: [ProductsService, AuthService]
 })
 export class GenerateQrCodePageModule {}

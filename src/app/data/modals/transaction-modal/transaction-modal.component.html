@@ -1,6 +1,7 @@
 <ion-header translucent>
   <ion-toolbar>
-    <ion-title>{{ title | translate }}</ion-title>
+    <!-- <ion-title>{{ title | translate }}</ion-title> -->
+    <ion-title>Transaction</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="closeModal()">
         <ion-icon slot="icon-only" name="close"></ion-icon>
@@ -9,25 +10,24 @@
   </ion-toolbar>
 </ion-header>
 <ion-content fullscreen>
-  <form [formGroup]="productForm">
+  <form [formGroup]="transactionForm">
     <ion-grid>
       <ion-row color="primary" class="ion-justify-content-center">
         <ion-col class="ion-align-self-center" size-md="6" size-lg="5" size-xs="12">
-          <!--<div class="ion-text-center">-->
-          <!--<h3></h3>-->
-          <!--</div>-->
           <div class="ion-padding form-group">
             <ion-item>
-              <ion-input formControlName="product_name" type="text" placeholder="Product name"></ion-input>
+              <ion-label position="stacked">Transaction client</ion-label>
+              <ion-input [disabled]="true" formControlName="transaction_client" type="text"></ion-input>
             </ion-item>
-            <div class="ion-padding form-group">
-              <ion-item>
-                <ion-input formControlName="product_price" type="text" placeholder="Product price"></ion-input>
-              </ion-item>
-            </div>
           </div>
           <div class="ion-padding form-group">
-            <ion-button #productOperationBtn size="large" [disabled]="productForm.invalid" expand="block" translate
+            <ion-item>
+              <ion-label position="stacked">Transaction price</ion-label>
+              <ion-input [disabled]="true" formControlName="transaction_price" type="text"></ion-input>
+            </ion-item>
+          </div>
+          <div class="ion-padding form-group">
+            <ion-button #transactionOperationBtn size="large" [disabled]="transactionForm.invalid" expand="block" translate
               >myApp.submit</ion-button
             >
           </div>

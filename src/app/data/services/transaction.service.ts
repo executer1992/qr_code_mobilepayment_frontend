@@ -20,4 +20,8 @@ export class TransactionService {
       )
       .subscribe();
   }
+
+  public addTransaction(transactionData) {
+    return this.apiService.post(this.endpoint, transactionData).pipe(first());
+  }
 }

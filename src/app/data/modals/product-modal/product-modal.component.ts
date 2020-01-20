@@ -1,17 +1,16 @@
 import { Component, Input, Output, ViewChild } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { ProductsService } from '../../services/products.service';
 import { Product } from '../../models/product';
 import { distinctUntilChanged, exhaustMap, mapTo, tap } from 'rxjs/operators';
 import { fromEvent, Observable, of, Subscription } from 'rxjs';
-import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-add-product',
-  templateUrl: './add-product-modal.component.html',
-  styleUrls: ['./add-product-modal.component.scss']
+  selector: 'app-product-modal',
+  templateUrl: './product-modal.component.html',
+  styleUrls: ['./product-modal.component.scss']
 })
-export class AddProductPage {
+export class ProductModal {
   @Input() productName: string;
   @Input() productPrice: number;
   @Input() product: Product;
@@ -23,11 +22,7 @@ export class AddProductPage {
     product_name: ['', Validators.required],
     product_price: ['', [Validators.required, Validators.pattern(/^\d{1,6}\.\d{0,2}$/)]]
   });
-  constructor(
-    private productService: ProductsService,
-    private modalController: ModalController,
-    private formBuilder: FormBuilder
-  ) {}
+  constructor(private modalController: ModalController, private formBuilder: FormBuilder) {}
 
   public ionViewWillEnter(): void {
     const click$: Observable<any> = fromEvent(this.productOperationBtn.el, 'click');
@@ -35,7 +30,6 @@ export class AddProductPage {
       click$
         .pipe(
           mapTo(this.productForm),
-          tap(console.log),
           distinctUntilChanged(),
           exhaustMap(() => {
             this.emitProductOperation(this.productForm);
@@ -48,8 +42,6 @@ export class AddProductPage {
 
   public ionViewDidEnter(): void {
     if (this.product) {
-      console.log(this.productForm.get('product_price'));
-      console.log(this.productForm.get('product_name'))
       this.productForm.get('product_name').setValue(this.product.product_name);
       this.productForm.get('product_price').setValue(this.product.product_price);
     }

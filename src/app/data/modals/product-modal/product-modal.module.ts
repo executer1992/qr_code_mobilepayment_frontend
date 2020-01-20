@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../../../shared/shared.module';
-import { AddProductPage } from './add-product-modal.component';
+import { ProductModal } from './product-modal.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
-  declarations: [AddProductPage],
+  declarations: [ProductModal],
   imports: [SharedModule, TranslateModule, ReactiveFormsModule],
-  entryComponents: [AddProductPage],
-  exports: [AddProductPage]
+  entryComponents: [ProductModal],
+  exports: [ProductModal]
 })
-export class AddProductModalModule {}
+export class ProductModalModule {}

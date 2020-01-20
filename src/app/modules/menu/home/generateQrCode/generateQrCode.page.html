@@ -4,8 +4,8 @@
 
     <ion-item>
       <ion-label>Product</ion-label>
-      <ion-select multiple="true" [(ngModel)]="selectedProducts" [selectedText]="selectedProducts" name="selectProduct" *ngIf="products">
-        <ion-select-option *ngFor="let product of products" value="{{product.product_id}}">
+      <ion-select multiple="true" [(ngModel)]="selectedProducts" name="selectProduct" *ngIf="products">
+        <ion-select-option *ngFor="let product of products" [value]="product">
           {{product.product_name}} - {{product.product_price}}</ion-select-option
         >
       </ion-select>
@@ -20,8 +20,5 @@
 
   <ion-card *ngIf="createdCode">
     <ngx-qrcode [qrc-value]="createdCode"></ngx-qrcode>
-    <ion-card-content>
-      <p>{{'myApp.value' | translate}}: {{createdCode}}</p>
-    </ion-card-content>
   </ion-card>
 </ion-content>

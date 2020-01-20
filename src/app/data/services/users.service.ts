@@ -10,7 +10,7 @@ export class UsersService {
 
   constructor(private apiService: ApiService) {}
 
-  register(user: User): Observable<AuthResponse> {
+  public register(user: User): Observable<any> {
     return this.apiService.post(this.endpoint, user).pipe();
   }
 

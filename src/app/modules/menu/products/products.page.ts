@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ProductsService } from '../../../data/services/products.service';
 import { ModalController } from '@ionic/angular';
-import { AddProductPage } from '../../../data/modals/add-product/add-product-modal.component';
+import { ProductModal } from '../../../data/modals/product-modal/product-modal.component';
 import { Observable, Subscription, throwError } from 'rxjs';
 import { Product } from '../../../data/models/product';
 import { catchError, tap } from 'rxjs/operators';
@@ -33,7 +33,7 @@ export class ProductsPage {
 
   async openAddProductModal() {
     const modal = await this.modalController.create({
-      component: AddProductPage,
+      component: ProductModal,
       componentProps: {
         productName: '',
         productPrice: '',
@@ -46,7 +46,7 @@ export class ProductsPage {
 
   async openEditProductModal(product: Product) {
     const modal = await this.modalController.create({
-      component: AddProductPage,
+      component: ProductModal,
       componentProps: {
         product,
         productName: product.product_name,
@@ -58,16 +58,19 @@ export class ProductsPage {
     return await modal.present();
   }
 
-  private addProduct(product: Product): Observable<Product[]> {
+  private addProduct(product: Product): void {
     this.loaderService.loadingPresent();
-    return this.productService.addProduct(product).pipe(
-      tap(async () => {
-        await this.loaderService.loadingDismiss();
-        await this.modalController.dismiss(null, 'cancel');
-        await this.toastService.presentToast('Product has been added!', ToastColor.SUCCESS);
-      }),
-      catchError(error => this.toastService.presentToast(error.message || 'Internal Server Error', ToastColor.WARNING))
-    );
+    this.productService
+      .addProduct(product)
+      .pipe(
+        tap(async () => {
+          await this.loaderService.loadingDismiss();
+          await this.modalController.dismiss(null, 'cancel');
+          await this.toastService.presentToast('Product has been added!', ToastColor.SUCCESS);
+        }),
+        catchError(error => this.toastService.presentToast(error.message || 'Internal Server Error', ToastColor.WARNING))
+      )
+      .subscribe();
   }
 
   public editProduct(product: Product) {

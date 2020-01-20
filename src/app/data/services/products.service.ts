@@ -30,7 +30,7 @@ export class ProductsService {
         tap(products => this.products.next(products))
       );
     }
-    return of(EMPTY);
+    return this.products;
   }
 
   public addProduct(product: Product) {
@@ -60,7 +60,6 @@ export class ProductsService {
   private addProductToSubj(product: Product) {
     const currentProducts: Product[] = this.products.getValue();
     const updatedProducts: Product[] = currentProducts !== null ? [...currentProducts, product] : [product];
-    console.log(updatedProducts);
     this.products.next(updatedProducts);
   }
 

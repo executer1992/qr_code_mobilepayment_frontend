@@ -16,11 +16,10 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./modules/login/login.module').then(m => m.LoginPageModule)
   },
-
   {
     path: 'menu',
     loadChildren: () => import('./modules/menu/menu.module').then(m => m.MenuPageModule),
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   }
 ];
 @NgModule({

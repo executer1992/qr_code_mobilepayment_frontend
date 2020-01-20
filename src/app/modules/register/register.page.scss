@@ -9,9 +9,12 @@
   background: -ms-linear-gradient(45deg, #35394a 0%, #1f222e 100%); /* IE10+ */
   background: linear-gradient(45deg, #35394a 0%, #1f222e 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#35394a', endColorstr='#1f222e',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   &_title {
     color: rgb(175, 177, 190);
-    height: 60px;
     font-size: 16px;
     display: flex;
     justify-content: center;
