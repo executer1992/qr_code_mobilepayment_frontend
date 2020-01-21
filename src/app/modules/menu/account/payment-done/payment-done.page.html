@@ -1,4 +1,4 @@
-<ion-content *ngIf="transaction">
+<ion-content *ngIf="transactionService.transactionHistory$ | async as transaction">
   <ion-card>
     <ion-card-header translate>myApp.payedSum</ion-card-header>
     <ion-card-content>

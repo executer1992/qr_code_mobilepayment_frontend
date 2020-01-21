@@ -1,43 +1,42 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../../core/api.service';
-import { catchError, first, tap, take } from 'rxjs/operators';
-import { AuthResponse } from '../models/auth-response';
+import { catchError, tap, mapTo } from 'rxjs/operators';
 import { Storage } from '@ionic/storage';
 import { BehaviorSubject, throwError, Observable } from 'rxjs';
 
 @Injectable()
 export class CardService {
   private cardRoute: string = 'cards';
-  private cardConnected: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private cardConnected: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
   public readonly cardConnected$: Observable<boolean> = this.cardConnected.asObservable();
 
   constructor(private apiService: ApiService, private storage: Storage) {}
 
-  public verifyCard() {
-    this.apiService
+  public verifyCard(): Observable<boolean> {
+    if (this.cardConnected.getValue() !== null) {
+      return this.cardConnected$;
+    }
+    return this.apiService
       .get(this.cardRoute)
       .pipe(
-        first(),
         tap(_ => this.cardConnected.next(true)),
+        mapTo(true),
         catchError(error => {
           this.cardConnected.next(false);
           return throwError(error || 'Server error');
         })
-      )
-      .subscribe();
+      );
   }
 
-  public connect(data) {
+  public connect(data): Observable<any> {
     return this.apiService
       .post(this.cardRoute, data)
       .pipe(
-        first(),
         tap(_ => this.cardConnected.next(true)),
         catchError(error => {
           this.cardConnected.next(false);
           return throwError(error || 'Server error');
         })
-      )
-      .subscribe();
+      );
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { TransactionService } from '../../../../data/services/transaction.service';
 
 @Component({
@@ -10,17 +10,15 @@ import { TransactionService } from '../../../../data/services/transaction.servic
 export class PaymentDonePage implements OnInit, OnDestroy {
 
   private subscription: Subscription = new Subscription();
-  public transaction: Observable<any>;
 
   constructor(private transactionService: TransactionService) {}
 
 
-  ngOnInit() {
-    this.transactionService.getTransactionHistory();
-    this.subscription.add(this.transactionService.transactionHistory$.subscribe(transaction => this.transaction = transaction))
+  ionViewWillEnter() {
+    this.subscription.add(this.transactionService.getTransactionHistory().subscribe());
   }
 
-  ngOnDestroy() {
+  ionViewWillLeave() {
     this.subscription.unsubscribe();
   }
 }

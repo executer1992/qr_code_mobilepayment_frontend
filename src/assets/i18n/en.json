@@ -34,6 +34,7 @@
     "value": "Value",
     "scanProcess": "Scan the Qr code to process",
     "scanResult": "Result of your scan",
-    "createAccount": "Register your account"
+    "createAccount": "Register your account",
+    "performTransaction": "Perform transaction"
   }
 }

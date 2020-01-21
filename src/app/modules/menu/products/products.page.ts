@@ -7,6 +7,7 @@ import { Product } from '../../../data/models/product';
 import { catchError, tap } from 'rxjs/operators';
 import { ToastColor, ToastService } from '../../../shared/toast.service';
 import { LoaderService } from '../../../shared/header/loader.service';
+import { handleModalOperations } from '../../../shared/helpers/pipeOperators';
 
 @Component({
   selector: 'app-products',
@@ -62,14 +63,7 @@ export class ProductsPage {
     this.loaderService.loadingPresent();
     this.productService
       .addProduct(product)
-      .pipe(
-        tap(async () => {
-          await this.loaderService.loadingDismiss();
-          await this.modalController.dismiss(null, 'cancel');
-          await this.toastService.presentToast('Product has been added!', ToastColor.SUCCESS);
-        }),
-        catchError(error => this.toastService.presentToast(error.message || 'Internal Server Error', ToastColor.WARNING))
-      )
+      .pipe(handleModalOperations(this.loaderService, this.modalController, this.toastService, 'Product has been added!'))
       .subscribe();
   }
 
@@ -77,21 +71,15 @@ export class ProductsPage {
     this.loaderService.loadingPresent();
     this.productService
       .editProduct(product)
-      .pipe(
-        tap(async () => {
-          await this.loaderService.loadingDismiss();
-          await this.modalController.dismiss(null, 'cancel');
-          await this.toastService.presentToast('Product succesfully editted!', ToastColor.SUCCESS);
-        }),
-        catchError(async error => {
-          await this.loaderService.loadingDismiss();
-          await this.modalController.dismiss(null, 'cancel');
-          await this.toastService.presentToast(error.errror, ToastColor.DANGER);
-          return throwError(error);
-        })
-      )
+      .pipe(handleModalOperations(this.loaderService, this.modalController, this.toastService, 'Product successfully editted!'))
       .subscribe();
   }
 
-  public removeProduct(product: Product) {}
+  public removeProduct(product: Product) {
+    this.loaderService.loadingPresent();
+    this.productService
+      .removeProduct(product)
+      .pipe(handleModalOperations(this.loaderService, this.modalController, this.toastService, 'Product succesfully removed!'))
+      .subscribe();
+  }
 }

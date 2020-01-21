@@ -19,14 +19,12 @@ export class ProductsService {
       .pipe(
         first(),
         tap(product => this.products.next(product))
-      )
-      .subscribe();
+      );
   }
 
   public getProducts() {
     if (this.products.getValue() === null ) {
       return this.apiService.get(this.endpoint).pipe(
-        first(),
         tap(products => this.products.next(products))
       );
     }

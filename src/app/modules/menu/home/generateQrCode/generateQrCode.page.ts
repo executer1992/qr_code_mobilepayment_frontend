@@ -34,9 +34,7 @@ export class GenerateQrCodePage {
     this.subscription.add(
       this.productService
         .getProducts()
-        .pipe(
-          tap(console.log),
-          tap(products => (this.products = products)))
+        .pipe(tap(products => (this.products = products)))
         .subscribe()
     );
   }

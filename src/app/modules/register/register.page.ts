@@ -11,15 +11,13 @@ import { ToastService, ToastColor } from 'src/app/shared/toast.service';
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss']
 })
-export class RegisterPage implements OnInit {
+export class RegisterPage {
   constructor(
     private userService: UsersService,
     private loaderSrv: LoaderService,
     private router: Router,
     private toastService: ToastService
   ) {}
-
-  ngOnInit() {}
 
   register(form) {
     this.loaderSrv.loadingPresent();

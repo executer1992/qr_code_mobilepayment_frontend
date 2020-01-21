@@ -33,6 +33,7 @@
     "value": "Wartość",
     "scanProcess": "Zeskanuj kod żeby przejść dalej",
     "scanResult": "Wynik skanowania",
-    "createAccount": "Zarejestruj swoje konto"
+    "createAccount": "Zarejestruj swoje konto",
+    "performTransaction": "Przeprowadź tranzakcję"
   }
 }

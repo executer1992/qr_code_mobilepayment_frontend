@@ -5,8 +5,8 @@
     </ion-buttons>
     <ion-title>{{ title | translate }}</ion-title>
     <ion-button color="light" slot="end" (click)="useLanguage()">
-      <span *ngIf="isEn">{{ 'myApp.pl' | translate }}</span>
-      <span *ngIf="!isEn">{{ 'myApp.en' | translate }}</span>
+      <span *ngIf="isEnglish">{{ 'myApp.pl' | translate }}</span>
+      <span *ngIf="!isEnglish">{{ 'myApp.en' | translate }}</span>
     </ion-button>
   </ion-toolbar>
 </ion-header>
