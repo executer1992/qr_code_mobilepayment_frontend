@@ -10,7 +10,7 @@ export const handleModalOperations = (
   toastService: ToastService,
   toastSuccessMessage: string
 ) => {
-  return (src: Observable<DocumentWithActivities>) =>
+  return (src: Observable<any>) =>
     src.pipe(
       tap(async () => {
         await loaderService.loadingDismiss();

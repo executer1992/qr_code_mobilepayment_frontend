@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './../../../../core/auth.service';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { NgModule } from '@angular/core';
@@ -9,7 +10,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ProductsService } from '../../../../data/services/products.service';
 
 @NgModule({
-  imports: [SharedModule, GenerateQrCodePageRoutingModule, NgxQRCodeModule, TranslateModule],
+  imports: [SharedModule, GenerateQrCodePageRoutingModule, NgxQRCodeModule, TranslateModule, ReactiveFormsModule],
   declarations: [GenerateQrCodePage],
   entryComponents: [GenerateQrCodePage],
   providers: [ProductsService, AuthService]

@@ -1,14 +1,12 @@
-import { ToastService } from './../../../../shared/toast.service';
-import { LoaderService } from './../../../../shared/header/loader.service';
+import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { User } from './../../../../data/models/user';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Product } from '../../../../data/models/product';
 import { ProductsService } from '../../../../data/services/products.service';
 import { tap } from 'rxjs/operators';
 import { Storage } from '@ionic/storage';
-import { TransactionModal } from 'src/app/data/models/transactions';
 
 @Component({
   selector: 'app-generate-qr-code',
@@ -21,13 +19,15 @@ export class GenerateQrCodePage {
   public products: Product[] = [];
   public selectedProducts: Product[] = [];
   private subscription: Subscription = new Subscription();
+  public transactionPriceForm: FormGroup = this.formBuilder.group({
+    transaction_price: ['', [Validators.required, Validators.pattern(/^\d{1,6}\.\d{0,2}$/)]]
+  });
 
   constructor(
     private productService: ProductsService,
     private storage: Storage,
     public modalController: ModalController,
-    private toastService: ToastService,
-    private loaderService: LoaderService
+    private formBuilder: FormBuilder
   ) {}
 
   public ionViewWillEnter(): void {
@@ -44,7 +44,7 @@ export class GenerateQrCodePage {
     this.subscription.unsubscribe();
   }
 
-  async createCode(): Promise<void> {
+  async createProductsCode(): Promise<void> {
     const user: User = await this.storage.get('AUTH_USER');
     const transaction_price: string = this.selectedProducts
       .map(el => Number(el.product_price))
@@ -52,5 +52,11 @@ export class GenerateQrCodePage {
       .toString();
     const products: Product[] = [...this.selectedProducts];
     this.createdCode = JSON.stringify({ user, transaction_price, products });
+  }
+
+  async createPriceCode(): Promise<void> {
+    const user: User = await this.storage.get('AUTH_USER');
+    const transaction_price: string = this.transactionPriceForm.value.transaction_price;
+    this.createdCode = JSON.stringify({ user, transaction_price });
   }
 }

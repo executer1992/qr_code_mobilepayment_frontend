@@ -13,10 +13,22 @@
   </ion-list>
 
   <div class="ion-padding ion-text-center">
-    <ion-button icon-left (click)="createCode()" translate>
-      <ion-icon name="barcode" style="margin-right: 10px"></ion-icon> {{ 'myApp.createCode' | translate}}
+    <ion-button icon-left (click)="createProductsCode()" translate>
+      <ion-icon name="barcode" style="margin-right: 10px"></ion-icon> {{ 'myApp.createProductsCode' | translate}}
     </ion-button>
   </div>
+
+  <form [formGroup]="transactionPriceForm" (ngSubmit)="createPriceCode()">
+    <div class="ion-padding ion-text-center">
+      <ion-item>
+        <ion-input formControlName="transaction_price" type="text" placeholder="Transaction price"></ion-input>
+      </ion-item>
+
+      <ion-button [disabled]="transactionPriceForm.invalid" icon-left (click)="createPriceCode()" translate>
+        <ion-icon name="barcode" style="margin-right: 10px"></ion-icon> {{ 'myApp.createPriceCode' | translate}}
+      </ion-button>
+    </div>
+  </form>
 
   <ion-card *ngIf="createdCode">
     <ngx-qrcode [qrc-value]="createdCode"></ngx-qrcode>

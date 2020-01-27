@@ -5,7 +5,7 @@ import { LoaderService } from './../../../../shared/header/loader.service';
 import { ToastService } from 'src/app/shared/toast.service';
 import { ModalController } from '@ionic/angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { handleModalOperations } from '../../../../shared/helpers/pipeOperators';
 
 @Component({

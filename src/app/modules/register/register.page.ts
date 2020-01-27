@@ -1,7 +1,7 @@
 import { LoaderService } from '../../shared/header/loader.service';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsersService } from '../../data/services/users.service';
 import { ToastService, ToastColor } from 'src/app/shared/toast.service';

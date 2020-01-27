@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { TransactionService } from '../../../../data/services/transaction.service';
 
@@ -7,11 +7,10 @@ import { TransactionService } from '../../../../data/services/transaction.servic
   templateUrl: './payment-received.page.html',
   styleUrls: ['./payment-received.page.scss']
 })
-export class PaymentReceivedPage implements OnInit, OnDestroy {
+export class PaymentReceivedPage {
   private subscription: Subscription = new Subscription();
 
   constructor(private transactionService: TransactionService) {}
-
 
   ionViewWillEnter() {
     this.subscription.add(this.transactionService.getTransactionHistory().subscribe());

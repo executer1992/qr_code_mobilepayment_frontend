@@ -2,7 +2,7 @@ import { User } from './user';
 import { Product } from './product';
 
 export interface TransactionModal {
-  products: Product[];
+  products?: Product[];
   transaction_price: string;
   user: User;
 }

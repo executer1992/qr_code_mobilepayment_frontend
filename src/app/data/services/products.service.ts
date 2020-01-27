@@ -14,19 +14,15 @@ export class ProductsService {
   constructor(private apiService: ApiService) {}
 
   public getProduct(productId: string) {
-    return this.apiService
-      .get(this.endpoint + `/${productId}`)
-      .pipe(
-        first(),
-        tap(product => this.products.next(product))
-      );
+    return this.apiService.get(this.endpoint + `/${productId}`).pipe(
+      first(),
+      tap(product => this.products.next(product))
+    );
   }
 
   public getProducts() {
-    if (this.products.getValue() === null ) {
-      return this.apiService.get(this.endpoint).pipe(
-        tap(products => this.products.next(products))
-      );
+    if (this.products.getValue() === null) {
+      return this.apiService.get(this.endpoint).pipe(tap(products => this.products.next(products)));
     }
     return this.products;
   }
@@ -40,18 +36,16 @@ export class ProductsService {
   }
 
   public editProduct(product: Product) {
-    return this.apiService
-      .patch(this.endpoint + `/${product.product_id}`, product)
-      .pipe(
-        first(),
-        tap(_ => this.editProductInSubj(product))
-      );
+    return this.apiService.patch(this.endpoint + `/${product.product_id}`, product).pipe(
+      first(),
+      tap(_ => this.editProductInSubj(product))
+    );
   }
 
-  public removeProduct(productId: string) {
-    return this.apiService.delete(this.endpoint + `/${productId}`).pipe(
+  public removeProduct(product: Product) {
+    return this.apiService.delete(this.endpoint + `/${product.product_id}`).pipe(
       first(),
-      tap(_ => this.removeProductFromSubj(productId))
+      tap(_ => this.removeProductFromSubj(product.product_id))
     );
   }
 
